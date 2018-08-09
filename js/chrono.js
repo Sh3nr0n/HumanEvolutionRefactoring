@@ -19,7 +19,7 @@ $(document).ready(function () {
     function createCells(objs) {
 
         objs.map((obj,i) => {// Loop through each object from the list passed as an argument and generate a cell with the corresponding values for age, height and gender + an id for the avatar image and height (used to dynamically change them)
-            $('.wrapper').append("<div class='grid_col'><div id='cell_"+i+"' class='row'><img id='img_"+i+"' class='img' src = 'img/bebe.svg'/></div><div class='row responsive_row'><span class='sexe'>"+obj.gender+" / </span><span id='age_"+i+"' class='age'>"+obj.age+" ans /</span><span id='height_"+i+"' class='taille'>"+obj.height+"</span></div></div>");
+            $('.wrapper').append("<div class='grid_col'><div id='cell_"+i+"' class='row'><img id='img_"+i+"' class='img' src = 'img/bebe.svg'/></div><div class='row responsive_row'><span class='sexe'>"+obj.gender+" / </span><span id='age_"+i+"' class='age'>"+obj.age+" an /</span><span id='height_"+i+"' class='taille'>"+obj.height+"</span></div></div>");
         })
     }
 
@@ -57,23 +57,23 @@ function evolution(object) {
     let taille = parseInt($('#height_'+object.num).html()); // Get the latest size value from the html document and transforms it into an integer
     console.log('taille avatar %s = %s',object.num, taille)
     object.age++; // Increment the age every time we play the function
-    $('#age_'+object.num).html(object.age + ' ans / '); // write the age value in the html document
+    $('#age_'+object.num).html(object.age +' ans'); // write the age value in the html document
 
     if (object.age < object.lifeSpan ) { // Check if avatar is alive
     
         if (object.age <= 3) {            
         taille = taille + (20*object.growth); // Apply the growth factor to the avatar's height
-        $('#height_'+object.num).html(parseInt(taille) + ' cm /'); // .toFixed(1)
+        $('#height_'+object.num).html(parseInt(taille) + ' / cm ');
         }
         else if (object.age <= 12){
             taille = taille + (5*object.growth);
             $('#img_'+object.num).attr('src', 'img/enfant.svg'); // Modify the avatar source image when it reaches age 12
-            $('#height_'+object.num).html(parseInt(taille) + ' cm /'); // Remove the height decimals and displays its value in the html document
+            $('#height_'+object.num).html(parseInt(taille) + ' / cm '); // Remove the height decimals and displays its value in the html document
         }
         else if (object.age <= 17){
             taille = taille + 2;
             $('#img_'+object.num).attr('src', 'img/' + object.gender + 'A.svg'); // Modify the avatar image according to the avatar's age and gender
-            $('#height_'+object.num).html(parseInt(taille) + ' cm /'); 
+            $('#height_'+object.num).html(parseInt(taille) + ' / cm '); 
         }
         else if (object.age <= 50){
             $('#img_'+object.num).attr('src', 'img/' + object.gender + 'J.svg');
